@@ -11,54 +11,6 @@ import 'react-toastify/dist/ReactToastify.css'
 
 const Checkout = ({ cart, clearCart, addToCart, removeFromCart, subTotal }) => {
 
-
-  // const initiatePayment = async ()=> {
-  //   let oid = Math.floor(Math.random() * Date.now());
-
-
-  //   const data = { cart, subTotal, oid, email: "email" };
-  //   let a = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pretransaction`, {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify(data),
-  //   })
-
-  //   let txnRes = await a.json()
-  //   console.log(txnRes)
-  //   let txnToken = txnRes.txnToken;
-
-  //   var config = {
-  //     "root": "",
-  //     "flow": "DEFAULT",
-  //     "data": {
-  //       "orderId": oid,
-  //       "token": txnToken,
-  //       "tokenType" : "TXN_TOKEN",
-  //       "amount": subTotal
-  //     },
-  //     "handler" : {
-  //       "notifyMerchant": function(eventName, data){
-  //         console.log("notifyMerchant handler function called");
-  //         console.log("eventName => ", eventName);
-  //         console.log("data=> ", data);
-  //       }
-  //     }
-  //   };
-
-  //   window.Paytm.CheckoutJS.init(config).then(function onSuccess() {
-  //     window.Paytm.CheckoutJS.invoke();
-  //   }).catch(function onerror(error) {
-  //     console.log("error => ", error);
-  //   });
-
-  // }
-
-
-
-
-
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
@@ -89,8 +41,6 @@ const Checkout = ({ cart, clearCart, addToCart, removeFromCart, subTotal }) => {
       fetchData(myuser.token)
       
     }
-  
-    
   }, [])
 
   const fetchData = async(token) => {
@@ -179,13 +129,13 @@ const Checkout = ({ cart, clearCart, addToCart, removeFromCart, subTotal }) => {
       order_id: orderDetails.id,
       callback_url: `${process.env.NEXT_PUBLIC_HOST}/api/posttransaction`,
       prefill: {
-        // name: "Gaurav Kumar",
+        name: "Our Customer",
         // email: "gaurav.kumar@example.com",
         // contact: "9999999999",
       },
-      // notes: {
-      //   address: "Rajasthan, India",
-      // },
+      notes: {
+        address: "India",
+      },
       theme: {
         color: "#3399cc",
       },
@@ -226,8 +176,6 @@ const Checkout = ({ cart, clearCart, addToCart, removeFromCart, subTotal }) => {
         pauseOnHover
         theme="dark"
         />
-      {/* <Head><meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0"/></Head>
-      <Script type="application/javascript" crossorigin="anonymous" src={`${process.env.NEXT_PUBLIC_PAYTM_HOST}/merchantpgpui/checkoutjs/merchants/${process.env.NEXT_PUBLIC_PAYTM_MID}.js`} /> */}
 
       <Head>
       <title>CheckOut the Order - codify.com</title>
